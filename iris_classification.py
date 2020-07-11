@@ -86,3 +86,13 @@ for feature in features:
 # for pred_dict in predictions:
 #     class_id = pred_dict['class_ids'][0]
 #     probability = pred_dict['probabilities'][class_id]
+
+# clustering: finds clusters of like data points and tells you the location of those clusters
+# with training data, you can pick how many clusters you want to find
+
+# K-Means Algorithm:
+# Step 1: Randomly pick K points to place K controls
+# Step 2: Assign all of the data points to the centroids by distance. The closest centroid to a point is the one it is assigned to.
+# Step 3: Average all of the points belonging to each centroid to find the middle of those clusters (center of mass). Place the corresponding centroids into that position.
+# Step 4: Reassign every point once again to the closest centroid.
+# Step 5: Repeat steps 3-4 until no point changes which centroid it belongs to.
