@@ -50,3 +50,39 @@ def input_fn(features, labels, training=True, batch_size=256):
 my_feature_columns = []
 for key in train.keys():
     my_feature_columns.append(tf.feature_column.numeric_column(key=key))
+
+# Build a DNN with 2 hidden layers wih 30 and 10 hidden nodes each.
+classifier = tf.estimator.DNNClassifier(
+    feature_columns=my_feature_columns,
+    # Two hidden layers of 30 and 10 nodes respectively.
+    hidden_units=[30, 10],
+    # The model must choose between 3 classes.
+    n_classes=3
+)
+
+classifier.train(
+    input_fn=lambda: input_fn(train, train_y, training=True),
+    steps=5000
+)
+# steps: similar to epochs, but runs until a certain number of items
+# have been looked at as opposed to how many times it goes through data
+
+eval_result = classifier.evaluate(input_fn=lambda: input_fn(test, test_y, training=False))
+
+
+features = ['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth']
+predict = {}
+
+print("Please type numeric values as prompted")
+for feature in features:
+    valid = True
+    while valid:
+        val = input(feature + ": ")
+        if not val.isdigit(): valid: False
+    
+    predict[feature] = [float(val)]
+
+# predictions = classifier.predict(input_fn=lambda: input_fn(predict))
+# for pred_dict in predictions:
+#     class_id = pred_dict['class_ids'][0]
+#     probability = pred_dict['probabilities'][class_id]
