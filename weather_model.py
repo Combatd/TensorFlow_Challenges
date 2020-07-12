@@ -56,3 +56,14 @@ model = tfd.HiddenMarkovModel(
     transition_distribution=transition_distribution,
     observation_distribution=observation_distribution,
     num_steps=7)
+
+# The expected temperatures for each day are given by:
+
+mean = model.mean()  # shape [7], elements approach 9.0
+
+# due to the way TensorFlow works on a lower level we need to evaluate part of the graph
+# from within a session to see the value of this tensor
+
+# in the new version of TensorFlow we need to sue tf.compat.v1.Session() rather than just tf.Session()
+with tf.compat.v1.Session() as sess:
+    print(mean.numpy())
