@@ -9,6 +9,7 @@ from six.moves import urllib
 
 import os
 import matplotlib.pyplot as plt
+import tensorflow_probability as tfp
 import tensorflow as tf
 
 print("TensorFlow version: {}".format(tf.__version__))
@@ -96,16 +97,3 @@ for feature in features:
 # Step 3: Average all of the points belonging to each centroid to find the middle of those clusters (center of mass). Place the corresponding centroids into that position.
 # Step 4: Reassign every point once again to the closest centroid.
 # Step 5: Repeat steps 3-4 until no point changes which centroid it belongs to.
-
-# Hidden Markov Models actually deal with probability distributions
-# A hidden markov model works with probabilities to predict future events or states.
-
-# Hidden Markov Model Example: Predict the Weather
-
-# States: Finite set of states. They can be something like "warm", "cold", "high", "low"
-# Observations: Each state has a particular outcome/observation associated with it based on probability distribution.
-# Example: On a hot day Tim has an 80% chance of being happy and 20% chance of being sad.
-# Transitions: Each state will have a probability defining the likelyhood of transitioning to a different state.
-# Example: A cold day has a 30% chance of being followed by a hot day and 70% chance of being followed by another cold day.
-
-# Markov Models are different than linear regression or classification because they use probability distributions to predict future events or states.
